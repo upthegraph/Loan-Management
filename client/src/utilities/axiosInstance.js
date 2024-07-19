@@ -1,6 +1,7 @@
 const axios = require('axios');
+console.log("env-------",process.env.NODE_ENV)
 const url = process.env.NODE_ENV === "production" ? 
-"https://srinivas-loan-management.herokuapp.com" : "http://localhost:8000";
+"http://localhost:8000" : "http://localhost:8000";
 
 const axiosInstance = axios.create({
     withCredentials: true,

@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import SignUp from './pages/Signup';
 import Profile from './pages/Profile';
 import Loan from './pages/CreateLoan';
+import List from './pages/List'
 
 // Custom Hooks
 import { UserContext } from './hooks/UserContext';
@@ -30,6 +31,7 @@ function App() {
               <PublicRoute exact path="/signup" component={SignUp}/>
               <PrivateRoute exact path="/profile" component={Profile}/>
               <PrivateRoute exact path="/new/loan" component={Loan}/>
+              <PrivateRoute exact path="/list" component={List} adminRequired/>
             </Switch>
           </Router>
         </div>

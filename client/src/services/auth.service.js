@@ -12,6 +12,7 @@ const login = async (email, password) => {
 }
 
 const register = async (username, email, number, password, address) => {
+    debugger
     return await axiosInstance.post('signup', {
         email,
         password,
@@ -35,5 +36,12 @@ const logout = async () => {
         return response.data
     })
 }
+const getList = async () => {
+    return await axiosInstance.get('list').then((response) => {
+        return response.data;
+    }).catch((error) => {
+        return error.response.data;
+    });
+}
 
-export { login, register, logout }
+export { login, register, logout, getList }

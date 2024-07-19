@@ -92,7 +92,12 @@ const SignUp = (props) => {
         }))
 
         setUser(data.user);
-        props.history.push('/profile');
+        console.log("data--------",data)
+        if (data.user.username === 'Admin' && data.user.email === 'admin@gmail.com') {
+            props.history.push('/list');
+        } else {
+            props.history.push('/profile');
+        }
     }
     
     return(

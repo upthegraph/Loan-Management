@@ -14,3 +14,43 @@
 .logout-container {
     float: right;
 }
+.confirmation-box {
+    background-color: #0a1931;
+    font-family: "Ronoto" sans-serif;
+    box-shadow: #185adb 0px 20px 30px -10px;
+    padding: 1.3rem;
+    border-radius: 1.5rem;
+    width: 300px;
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    .confirmation-buttons {
+        display: flex;
+        justify-content: center;
+
+        .button {
+            margin: 0 10px;
+        }
+
+        .cancel-button {
+            background-color: #ccc;
+            border: none;
+        }
+
+        .confirm-button {
+            background-color: #f44336;
+            color: #ffffff;
+            border: none;
+        }
+    }
+}

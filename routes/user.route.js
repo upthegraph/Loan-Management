@@ -7,6 +7,7 @@ const { auth } = require('../middleware/auth');
 router.post("/signup", async (req, res) => {
     try{
         const user = new User({ ...req.body });
+        console.log("user---------------",user)
         const token = await user.generateAuthToken();
 
         // Creating a http only cookie, which is used for authorization
@@ -23,6 +24,7 @@ router.post("/signup", async (req, res) => {
     }catch(error){
         const message = error.message;
         let errorMessage = '';
+        console/log("message------------",message)
         // Checking for duplicates
         if(message.includes("username")){
             errorMessage = "Opps, the username you have enter already exists, try a different one";
@@ -97,6 +99,40 @@ router.get("/logout", auth, async (req, res) => {
         success: true,
         message: "Successfully logged out"
     })
+})
+
+router.get("/list", auth, async (req, res) => {
+        try {
+            const data = await User.aggregate([
+                {
+                    $lookup: {
+                        from: 'loans', // Collection name for loans
+                        localField: '_id',
+                        foreignField: 'owner',
+                        as: 'loans',
+                    },
+                },
+                {
+                    $project: {
+                        password: 0, 
+                        tokens: 0,
+                        __v:0, 
+                    },
+                },
+            ]);
+           console.log("user-----------",data)
+        res.status(201).send({
+            success: true,
+            message: "Fetched all available loans created by the user",
+            data: data
+        })
+    }catch(error){
+        const message = error.message;
+        res.status(400).send({
+            success: false,
+            message
+        });
+    }
 })
 
 module.exports = router

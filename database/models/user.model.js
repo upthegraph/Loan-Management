@@ -43,7 +43,8 @@ const UserSchema = new Schema({
 UserSchema.virtual('loans', {
     ref: 'Loan',
     localField: '_id',
-    foreignField: 'owner'
+    foreignField: 'owner',
+    justOne: false 
 })
 
 /*
